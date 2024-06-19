@@ -1,0 +1,7 @@
+load("@rules_python//python:py_binary.bzl", "py_binary")
+
+py_binary(
+    name = "app",
+    srcs = ["app.py"],
+    deps = ["@cpplib_with_pybindings//cpplib:answer"],
+)

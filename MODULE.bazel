@@ -1,0 +1,10 @@
+module(name = "pyapp_with_cppext_dep", version = "0.1")
+
+bazel_dep(name = "rules_python", version = "0.33.1")
+PY_VER = "3.12"
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(is_default = True, python_version = PY_VER)
+use_repo(python, "python_{}".format(PY_VER.replace(".", "_")))
+
+bazel_dep(name = "cpplib_with_pybindings", version = "0.1")
+local_path_override(module_name = "cpplib_with_pybindings", path = "../bazel-demo-cpplib-with-pybindings")
